@@ -35,18 +35,10 @@
                     <h4 class="text-success">Create New User</h4>
                 </div>
                 <div class="card-body text-success">
-                    <form action="{{ route('student.store') }}" method="post">
+                    <form action="{{ route('subject.store') }}" method="post">
                         @csrf
 
-                        <div class=" row ">
-                            <div class="col-12 d-flex justify-content-center">
-                                <label for="email" class="form-label text-center">Enter your email:</label>
-                            </div>
-                            <div class="col-12">
 
-                                <input type="email" class="form-control rounded" name="email" id="email">
-                            </div>
-                        </div>
 
                         <div class=" row mb-3">
                             <div class="col-12 d-flex justify-content-center">
@@ -60,15 +52,6 @@
 
 
 
-                        </div>
-
-                        <div class="row">
-                            <div class="col-12 d-flex justify-content-center">
-                                <label for="phone" class="form-label text-center">Enter your phone:</label>
-                            </div>
-                            <div class="col-12">
-                                <input type="text" class="form-control rounded" name="phone" id="phone">
-                            </div>
                         </div>
 
                         <div class="text-center mt-2">
