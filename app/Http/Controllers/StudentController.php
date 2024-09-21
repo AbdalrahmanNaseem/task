@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StorestudentRequest;
 use App\Http\Requests\UpdatestudentRequest;
 use App\Models\Student;
+use App\Models\Subject;
+use App\Models\Subjects;
 use Illuminate\Http\Request;
 
 class StudentController extends Controller
@@ -25,7 +27,8 @@ class StudentController extends Controller
      */
     public function create(Request $request)
     {
-        return view('student.create');
+        $subjects = Subject::all();
+        return view('student.create', compact('subjects'));
     }
 
     /**
@@ -33,11 +36,15 @@ class StudentController extends Controller
      */
     public function store(Request $request)
     {
-        Student::create([
-            'name' => $request['user_name'],
+        $student = Student::create([
+            'name' => $request['name'],
+
             'email' => $request['email'],
             'phone' => $request['phone'],
         ]);
+        if ($request->has('subjects')) {
+            $student->subjects()->sync($request->input('subjects'));
+        }
 
         return redirect()->route('students.index');
     }
@@ -55,7 +62,8 @@ class StudentController extends Controller
      */
     public function edit(Student $student)
     {
-        return view('student.edit', compact('student'));
+        $subjects = Subject::all();
+        return view('student.edit', compact('student', 'subjects'));
     }
 
     /**
@@ -68,6 +76,9 @@ class StudentController extends Controller
             'name' => $request->input('New_user_name'),
             'Phone' => $request->input('New_user_phone')
         ]);
+        if ($request->has('subjects')) {
+            $student->subjects()->sync($request->input('subjects'));
+        }
 
         return redirect()->route('students.index');
     }

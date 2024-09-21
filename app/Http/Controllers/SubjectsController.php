@@ -7,6 +7,7 @@ use App\Http\Requests\StoreSubjectsRequest;
 use App\Http\Requests\UpdateSubjectsRequest;
 use Illuminate\Http\Request;
 use App\Http\Requests\UpdatestudentRequest;
+use App\Models\Subject;
 
 class SubjectsController extends Controller
 {
@@ -15,7 +16,7 @@ class SubjectsController extends Controller
      */
     public function index()
     {
-        $subjects = Subjects::all();
+        $subjects = Subject::all();
         return view('subject.index', compact('subjects'));
     }
 
@@ -32,7 +33,7 @@ class SubjectsController extends Controller
      */
     public function store(Request $request)
     {
-        Subjects::create([
+        Subject::create([
             'name' => $request['user_name'],
 
         ]);
@@ -42,7 +43,7 @@ class SubjectsController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Subjects $subjects)
+    public function show(Subject $subjects)
     {
         //
     }
@@ -50,7 +51,7 @@ class SubjectsController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Subjects $subject)
+    public function edit(Subject $subject)
     {
         return view('subject.edit', compact('subject'));
     }
@@ -58,7 +59,7 @@ class SubjectsController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Subjects $subject)
+    public function update(Request $request, Subject $subject)
     {
         $subject->update([
 
@@ -76,7 +77,7 @@ class SubjectsController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Subjects $subject)
+    public function destroy(Subject $subject)
     {
 
 
